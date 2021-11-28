@@ -4,7 +4,7 @@ services:
     container_name: hello_world
     image: poc_hello_world_img
     build:
-      context: ./hello_world_app/
+      context: ./maven-hello-world
       dockerfile: ./Dockerfile
     ports:
       - "80:80"
