@@ -1,0 +1,10 @@
+version: '3'
+services:
+  hello_world:
+    container_name: hello_world
+    image: poc_hello_world_img
+    build:
+      context: ./hello_world_app/
+      dockerfile: ./Dockerfile
+    ports:
+      - "80:80"

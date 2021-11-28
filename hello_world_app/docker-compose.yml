@@ -1,0 +1,9 @@
+version: '3'
+services:
+  hello_world:
+    container_name: hello_world
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "80:80"
