@@ -10,7 +10,7 @@ phases:
        - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
        - chmod +x kubectl
        - mv ./kubectl /usr/local/bin/kubectl
-       - wget https://github.com/helm/helm/archive/refs/tags/v2.14.1.tar.gz -O helm.tar.gz; tar -xzf helm.tar.gz
+       - wget https://get.helm.sh/helm-v2.14.3-linux-arm64.tar.gz -O helm.tar.gz; tar -xzf helm.tar.gz
        - chmod +x ./linux-amd64/helm
        - mv ./linux-amd64/helm /usr/local/bin/helm
   pre_build: # Add kubeconfig to access to EKS cluster
