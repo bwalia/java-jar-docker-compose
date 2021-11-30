@@ -25,6 +25,6 @@ phases:
       - docker tag $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
   post_build: # Push the Docker image to the ECR
     commands:
-      - $(aws ecr get-login --no-include-email --region eu-west-2)
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - "helm upgrade -i first_release hello-world-chart -f ./hello-world-chart/values.$ENV.yaml --set image.tag=$CODEBUILD_RESOLVED_SOURCE_VERSION"
