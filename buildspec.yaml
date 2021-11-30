@@ -2,6 +2,7 @@ version: 0.2
 phases:
   install: # Install AWS cli, kubectl (needed for Helm) and Helm
     commands:
+       - ls -alt
        - apt update
        - apt install -y awscli git python3
        - curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/linux/amd64/aws-iam-authenticator
@@ -20,7 +21,7 @@ phases:
       - "cp config-$ENV ~/.kube/config"
   build: # Build Docker image and tag it with the commit sha
     commands:
-      - cd  maven-hello-world && docker build . -t $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION -f Dockerfile
+      - cd maven-hello-world && docker build . -t $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION -f Dockerfile
       - docker tag $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
   post_build: # Push the Docker image to the ECR
     commands:
