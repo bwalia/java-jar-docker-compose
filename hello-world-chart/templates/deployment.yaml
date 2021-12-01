@@ -20,10 +20,7 @@ spec:
       labels:
         {{- include "hello-world-chart.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      imagePullSecrets: eu-west-2-ecr-registry
       serviceAccountName: {{ include "hello-world-chart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
