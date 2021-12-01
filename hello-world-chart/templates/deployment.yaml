@@ -21,7 +21,7 @@ spec:
         {{- include "hello-world-chart.selectorLabels" . | nindent 8 }}
     spec:
       imagePullSecrets:
-        - eu-west-2-ecr-registry
+        - name: {{ .Values.imagePullSecrets }}
       serviceAccountName: {{ include "hello-world-chart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
