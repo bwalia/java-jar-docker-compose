@@ -27,5 +27,4 @@ phases:
     commands:
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
-      - /usr/local/bin/kubectl get pods
-      - helm upgrade -i firstrelease --values ./hello-world-chart/values-staging.yaml --set image.tag=$CODEBUILD_RESOLVED_SOURCE_VERSION" ./hello-world-chart
+      - "helm upgrade -i firstrelease --values ./hello-world-chart/values-staging.yaml --set image.tag=$CODEBUILD_RESOLVED_SOURCE_VERSION" ./hello-world-chart"
