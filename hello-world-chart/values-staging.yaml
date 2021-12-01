@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: poc_hello_world_img
+  repository: 123154119074.dkr.ecr.eu-west-2.amazonaws.com/java_hello_world
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "22dbc9e431a0977cfd06a0f211c9d6228fd1c289"
 
 imagePullSecrets: eu-west-2-ecr-registry
 nameOverride: ""
