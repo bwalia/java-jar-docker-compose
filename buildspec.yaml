@@ -21,9 +21,10 @@ phases:
       - "cp config-staging ~/.kube/config"
   build: # Build Docker image and tag it with the commit sha
     commands:
-      - cd maven-hello-world && docker build . -t $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION -f maven-hello-world/Dockerfile && cd ..
+      - cd maven-hello-world && docker build . -t $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION -f Dockerfile
       - docker tag $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
-      - ls -lR
+      - cd ../
+      - ls -alt
   post_build: # Push the Docker image to the ECR
     commands:
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
