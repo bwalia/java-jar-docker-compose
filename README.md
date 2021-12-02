@@ -18,4 +18,4 @@ deploy application to k8s using helm charts
 -------------
 ``helm install myhelloworld ./hello-world-chart``
 
-**** THANKS FOR SORTING THIS OUT ****
+ **** THANKS FOR SORTING THIS OUT ****
